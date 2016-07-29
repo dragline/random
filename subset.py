@@ -27,12 +27,20 @@ def subSet(n):
     # Recursive step. Idea is that for a list [a, b, c, ..., n], the resulting ordered subsets will
     # always be of the form [a, subSet([b,c,...,n])] or [ab, subSet[c,..., n]]
     else:
+        
+
+        # NOTE: There's some ugliness here that is a result of combining all the result 
+        # lists and not winding up with lists of lists of lists of lists... It could like be
+        # cleaned up some. 
+
+
         # Get results of form [a, subSet([b,c,...n])
         subSetResults = subSet(n[1:])
         resultsOfForm_a = []
         for i in subSetResults:
             if type(i) == type([]):
                 foo = [n[0]]
+                # Copy required because foo can be list of lists
                 temp = foo.copy()
                 temp.extend(i)
             else:
